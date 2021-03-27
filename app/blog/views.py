@@ -5,7 +5,7 @@ from .forms import *
 from .models import *
 
 menu = [{'title': "О сайте", 'url_name': 'about'},
-        {'title': "Добавить статью", 'url_name': 'add_page'},
+        {'title': "Добавить статью", 'url_name': 'add_post'},
         {'title': "Обратная связь", 'url_name': 'contact'},
         {'title': "Войти", 'url_name': 'login'}
 ]
@@ -25,19 +25,16 @@ def index(request):
 def about(request):
     return render(request, 'blog/about.html', {'menu': menu, 'title': 'О сайте'})
 
-def addpage(request):
+def addpost(request):
     if request.method == 'POST':
-        form = AddPostForm(request.POST)
+        form = AddPostForm(request.POST, request.FILES)
         if form.is_valid():
-            try:
-                Women.objects.create(**form.cleaned_data)
-                return redirect('home')
-            except:
-                form.add_error(None, 'Ошибка добавления поста')
+            form.save()
+            return redirect('home')
 
     else:
         form = AddPostForm()
-    return render(request, 'blog/addpage.html', {'form': form, 'menu': menu, 'title': 'Добавление поста'})
+    return render(request, 'blog/addpost.html', {'form': form, 'menu': menu, 'title': 'Добавление поста'})
 
 def contact(request):
     return HttpResponse("Обратная связь")
