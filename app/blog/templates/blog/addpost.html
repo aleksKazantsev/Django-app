@@ -1,5 +1,5 @@
-{% extends 'blog/base.html' %} {% block content %}
-<h1>{{title}}</h1>
+{% extends 'app/base.html' %} {% block content %}
+<h2>{{title}}</h2>
 
 <form action="{% url 'add_post' %}" method="post" enctype="multipart/form-data">
   {% csrf_token %}

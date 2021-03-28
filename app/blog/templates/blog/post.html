@@ -1,6 +1,10 @@
-{% extends 'blog/base.html' %} {% block content %}
-<h1>{{post.title}}</h1>
-
-{% if post.photo %}
-<p><img class="img-article-left" src="{{post.photo.url}}" /></p>
-{% endif %} {{post.content|linebreaks}} {% endblock %}
+{% extends 'app/base.html' %} {% block content %} {% if post.photo %}
+<img
+  style="height: 100px; object-fit: cover; width: 100%"
+  src="{{post.photo.url}}"
+/>
+{% endif %}
+<div class="p-3 shadow bg-white rounded">
+  <h1>{{post.title}}</h1>
+  {{post.content|linebreaks}} {% endblock %}
+</div>
