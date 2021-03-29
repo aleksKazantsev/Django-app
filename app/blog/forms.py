@@ -12,8 +12,12 @@ class AddPostForm(forms.ModelForm):
         model = Post
         fields = ['title', 'slug', 'content', 'photo', 'is_published', 'cat']
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-input'}),
-            'content': forms.Textarea(attrs={'cols': 60, 'rows': 10}),
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'slug': forms.TextInput(attrs={'class': 'form-control'}),
+            'content': forms.Textarea(attrs={'cols': 60, 'rows': 10, 'class': 'form-control'}),
+            'photo': forms.FileInput(attrs={'class': 'form-control'}),
+            'is_published': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+            'cat': forms.Select(attrs={'class': 'form-select'})
         }
 
     def clean_title(self):

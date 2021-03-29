@@ -1,19 +1,23 @@
 {% extends 'app/base.html' %} {% block content %}
-<h2>{{title}}</h2>
 
-<form action="{% url 'add_post' %}" method="post" enctype="multipart/form-data">
-  {% csrf_token %}
+<fieldset class="shadow p-3 mb-5 bg-white rounded" >
+  <legend>{{title}}</legend>
+  <form action="{% url 'add_post' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
 
-  <div>{{ form.non_field_errors }}</div>
+    <div>{{ form.non_field_errors }}</div>
 
-  {% for f in form %}
-  <label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>
-  <!---->
-  {{ f }}
-  <div>{{ f.errors }}</div>
-  {% endfor %}
+    {% for f in form %}
+    <div class="mb-3">
+      <label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>
+      <!---->
+      {{ f }}
+      <div>{{ f.errors }}</div>
+    </div>
+    {% endfor %}
 
-  <button type="submit">Добавить</button>
-</form>
+    <button type="submit" class="btn btn-primary">Добавить</button>
+  </form>
+</fieldset>
 
 {% endblock %}
