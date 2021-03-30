@@ -1,9 +1,10 @@
-from .models import *
+from blog.models import *
 
-menu = [{'title': "О сайте", 'url_name': 'about'},
-        {'title': "Добавить статью", 'url_name': 'add_post'},
-        {'title': "Обратная связь", 'url_name': 'contact'},
-        {'title': "Войти", 'url_name': 'login'}
+menu = [
+    {'title': 'Добавить пост', 'url_name': 'add_post'},
+    {'title': 'Регистрация', 'url_name': 'register'},
+    {'title': 'Войти', 'url_name': 'login'},
+    {'title': 'Выход', 'url_name': 'logout'}
 ]
 
 class DataMixin:
@@ -14,6 +15,11 @@ class DataMixin:
         cats = Category.objects.all()
         user_menu = menu.copy()
         if not self.request.user.is_authenticated:
+            #delit private item menu 
+            user_menu.pop(0)
+            user_menu.pop(2)
+        else:
+            user_menu.pop(1)
             user_menu.pop(1)
 
         context['menu'] = user_menu

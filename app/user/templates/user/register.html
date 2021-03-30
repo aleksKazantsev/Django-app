@@ -1,0 +1,13 @@
+{% extends 'app/base.html' %}
+
+<!--content-->
+{% block content %}
+<fieldset class="shadow p-3 mb-5 bg-white rounded" >
+    <legend>{{title}}</legend>
+    <form action="{% url 'add_post' %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary">Добавить</button>
+    </form>
+</fieldset>
+{% endblock %}

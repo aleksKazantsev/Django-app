@@ -6,11 +6,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import *
 from .models import *
-from .utils import *
+from app.utils import *
 
 
 class BlogHome(DataMixin, ListView):
-    #paginate_by = 2
     model = Post
     template_name = 'blog/index.html'
     context_object_name = 'posts'
@@ -49,7 +48,6 @@ class ShowPost(DataMixin, DetailView):
 
 
 class PostCategory(DataMixin, ListView):
-    #paginate_by = 2
     model = Post
     template_name = 'blog/index.html'
     context_object_name = 'posts'
@@ -63,15 +61,6 @@ class PostCategory(DataMixin, ListView):
     def get_queryset(self):
         return Post.objects.filter(cat__slug=self.kwargs['cat_slug'], is_published=True)
 
-    
-def about(request):
-    return render(request, 'blog/about.html', {'menu': menu, 'title': 'О сайте'})
-
-def contact(request):
-    return HttpResponse("Обратная связь")
-
-def login(request):
-    return HttpResponse("Авторизация")
 
 def pageNotFound(request, exception):
     return HttpResponseNotFound('<h1>Страница не найдена</h1>')
