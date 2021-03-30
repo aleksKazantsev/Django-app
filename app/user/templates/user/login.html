@@ -4,10 +4,10 @@
 {% block content %}
 <fieldset class="shadow p-3 mb-5 bg-white rounded" >
   <legend>{{title}}</legend>
-  <form method="post" >
+  <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Добавить</button>
+    <button type="submit" class="btn btn-primary">Войти</button>
   </form>
 </fieldset>
 {% endblock %}

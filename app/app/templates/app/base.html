@@ -15,6 +15,7 @@
     <!--main menu-->
     {% block mainmenu %}
     <nav class="nav justify-content-end">
+      <li class="nav-link">{{user.username}}</li>
       <a class="nav-link" href="{% url 'home' %}"></a>
       {% for m in menu %}
       <a class="nav-link" href="{% url m.url_name %}">{{m.title}}</a>
